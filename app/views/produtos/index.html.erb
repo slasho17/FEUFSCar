@@ -1,0 +1,35 @@
+<% content_for :header do %>
+  <section class="hero is-warning">
+    <div class= "hero-body">
+      <div class= "container">
+        <h1 class= "title">
+          Veja os ultimos produtos da FEUFSCar
+        </h1>
+      </div>
+    </div>
+  </section>
+<%end%>
+
+<div class = "produto-index-grid pt4">     <!-- começa a div de cada produto no indice -->
+  <% @produtos.each do |produto| %>
+
+    <div class= "produto border-light">
+      <div class="produto-thumb">
+        <%= link_to image_tag(produto.image_url(:thumb)),produto%>    <!-- imagem do produto -->
+      </div>
+
+      <div class= "pa3">
+        <h3 class= "fw7 f4 tipo"><%= link_to produto.tipo, produto%></h3>
+        <p class= "has-text-gray fg pt1"> Anunciado por <%= produto.user.name%></p>           <!-- mostra algumas informações do produto -->
+        <p class= "f3 fw6 has-text-right pt2 preço"><%= number_to_currency(produto.preço)%></p>
+
+        <% if produto_author(produto)%>   <!-- helper do produto -->
+          <%=link_to 'Editar', edit_produto_path(produto), class: "button is-small"%> 
+          <%=link_to 'Excluir', produto, method: :delete,data: {confirm: "Tem certeza disso?"}, #botoes de editar e excluir, só aparecem para usuarios logados
+            class: "button is-small" %>
+        <%end%>
+
+      </div>
+    </div>
+  <%end%>
+</div> <!-- acaba a div de cada prdouto no indice -->
