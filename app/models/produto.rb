@@ -1,6 +1,6 @@
 class Produto < ApplicationRecord
     mount_uploader :image, ImageUploader
-    serialize :image, JSON # isso é do sqlite
+    serialize :image, JSON 
     belongs_to :user, optional:true
 
     validates :tipo, :descrição, :preço, presence: true
