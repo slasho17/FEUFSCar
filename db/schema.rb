@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20190630215104) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "produtos", force: :cascade do |t|
     t.string "tipo"
     t.text "descrição"
